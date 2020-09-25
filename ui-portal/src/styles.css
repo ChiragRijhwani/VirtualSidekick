@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+.btn-circle {
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  padding: 0;
+  border-radius: 50%;
+  line-height: 0px;
+  font-size: 1rem;
+}
+.btn-circle-lg {
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  font-size: 1.1rem;
+}
+.form-control:focus {
+  border-color: #eee;
+  box-shadow: 0 0 0 0.15rem rgba(200,200,200,.45);
+}
