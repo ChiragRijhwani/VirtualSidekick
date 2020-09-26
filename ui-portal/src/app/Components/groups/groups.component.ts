@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Group } from './group.model';
 
 @Component({
   selector: 'app-groups',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupsComponent implements OnInit {
 
-  title = "Groups";
+  name: string;
+  description: string;
+  power: string[];
 
-  data = [
+  groups: Group[] = [
     {
       "name": "Writers",
       "description": "The content writers",
@@ -27,9 +31,19 @@ export class GroupsComponent implements OnInit {
     }
   ]
 
+  powers: string[] = ["Read", "Write", "Delete", "Approve", "Admin"];
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onSubmit() {
+    const group = new Group();
+    group.name = this.name;
+    group.description = this.description;
+    group.powers = this.power;
+
+    this.groups.push(group);
+  }
 }

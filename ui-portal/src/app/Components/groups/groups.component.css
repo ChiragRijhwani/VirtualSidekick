@@ -1,0 +1,33 @@
+main {
+  padding-top: 55px;
+  padding-bottom: 55px;
+  height: 100%;
+}
+.list-container {
+  height: 100%;
+  overflow: auto;
+}
+.list-text {
+  width: 60%;
+}
+.list-container>div>a>span {
+  cursor: pointer;
+}
+#addNew {
+  position: fixed;
+  bottom: 8%;
+  right: 3%;
+  font-size: 2.5rem;
+  z-index: 1200;
+}
+@media (min-width: 576px) {
+  .list-text {
+    width: 80%;
+  }
+} /* media query 576 ends */
+@media (max-width: 1024px) {
+  #addNew {
+    bottom: 6%;
+    right: 2%;
+  }
+} /* media query 1024 ends */
