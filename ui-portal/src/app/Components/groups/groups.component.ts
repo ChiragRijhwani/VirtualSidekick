@@ -16,7 +16,6 @@ export class GroupsComponent implements OnInit {
   constructor(private groupService: GroupsService) { }
 
   ngOnInit(): void {
-    //this.groups = this.groupService.getGroups();
     this.getGroups();
   }
 
@@ -34,7 +33,8 @@ export class GroupsComponent implements OnInit {
   }
 
   onNewGroup(group: Group) {
-    this.groups.push(group);
+
+    this.groupService.addGroups(group).subscribe(success => console.log(success));
     this.formVisible = false;
   }
 }

@@ -30,4 +30,9 @@ export class GroupsService {
   getGroups(): Observable<Group[]> {
     return of(this.groups);
   }
+
+  addGroups(group: Group): Observable<string> {
+    this.groups.push(group);
+    return of("group added");
+  }
 }

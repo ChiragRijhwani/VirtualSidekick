@@ -22,7 +22,6 @@ export class AddGroupComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("in add group");
   }
 
   onSubmit() {
