@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { GroupsService } from 'src/app/Services/groups.service';
 import { Group } from './group.model';
 
 @Component({
@@ -12,27 +13,12 @@ export class GroupsComponent implements OnInit {
   selectedGroup: Group;
   formVisible= false;
 
-  groups: Group[] = [
-    {
-      "name": "Writers",
-      "description": "The content writers",
-      "powers": ["Read", "Write"]
-    },
-    {
-      "name": "Readers",
-      "description": "The content readers",
-      "powers": ["Read"]
-    },
-    {
-      "name": "Publishers",
-      "description": "I approve your content",
-      "powers": ["Read", "Write", "Delete", "Approve"]
-    }
-  ]
+  groups: Group[];
 
-  constructor() { }
+  constructor(private groupService: GroupsService) { }
 
   ngOnInit(): void {
+    this.groups = this.groupService.getGroups();
   }
 
   setSelected(group: Group) {
