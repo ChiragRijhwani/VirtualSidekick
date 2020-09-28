@@ -8,9 +8,9 @@ main {
   overflow: auto;
 }
 .list-text {
-  width: 60%;
+  width: 80%;
 }
-.list-container>div>a>span {
+.list-container>div>a {
   cursor: pointer;
 }
 #addNew {
@@ -22,7 +22,7 @@ main {
 }
 @media (min-width: 576px) {
   .list-text {
-    width: 80%;
+    width: 89%;
   }
 } /* media query 576 ends */
 @media (max-width: 1024px) {

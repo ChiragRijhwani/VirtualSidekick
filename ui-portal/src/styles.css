@@ -19,6 +19,12 @@ body {
   line-height: 55px;
   font-size: 1.1rem;
 }
+.form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .form-control:focus {
   border-color: #eee;
   box-shadow: 0 0 0 0.15rem rgba(200,200,200,.45);

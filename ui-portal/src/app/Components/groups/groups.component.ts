@@ -9,9 +9,8 @@ import { Group } from './group.model';
 })
 export class GroupsComponent implements OnInit {
 
-  name: string;
-  description: string;
-  power: string[];
+  selectedGroup: Group;
+  formVisible= false;
 
   groups: Group[] = [
     {
@@ -31,19 +30,22 @@ export class GroupsComponent implements OnInit {
     }
   ]
 
-  powers: string[] = ["Read", "Write", "Delete", "Approve", "Admin"];
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    const group = new Group();
-    group.name = this.name;
-    group.description = this.description;
-    group.powers = this.power;
+  setSelected(group: Group) {
+    this.selectedGroup = group;
+  }
 
+  onAddBtnClick() {
+    this.formVisible=true;
+    this.selectedGroup=null;
+  }
+
+  onNewGroup(group: Group) {
     this.groups.push(group);
+    this.formVisible = false;
   }
 }

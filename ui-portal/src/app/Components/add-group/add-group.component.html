@@ -1,0 +1,61 @@
+<div class="form">
+  <form ngForm #groupsForm class="jumbotron shadow">
+    <div class="form-group">
+      <label for="groupName">Group Name</label>
+      <input type="text" class="form-control" id="groupName" maxlength="20" [(ngModel)]="name" name="groupName">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" id="description" name="description" [(ngModel)]="description">
+    </div>
+    <div class="form-group">
+      <label for="powers">Powers</label>
+      <select multiple class="form-control" id="powers" name="powers" [(ngModel)]="power">
+        <option *ngFor="let power of powers">{{power}}</option>
+      </select>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-outline-secondary w-25" (click)="onCancel()">Cancel</button>
+      <button type="button" class="btn btn-primary ml-1 w-25" (click)="onSubmit(); groupsForm.reset()">Save</button>
+    </div>
+  </form>
+</div>
+
+<!-- <div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="groupName">Group Name</label>
+            <input type="text" class="form-control" id="groupName" maxlength="20">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="discription">
+          </div>
+          <div class="form-group">
+            <label for="powers">Powers</label>
+            <select multiple class="form-control" id="powers">
+              <option>Admin</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div> -->
