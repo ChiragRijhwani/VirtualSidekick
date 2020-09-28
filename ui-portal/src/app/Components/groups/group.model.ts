@@ -1,5 +1,5 @@
 export class Group {
-    "name": string;
-    "description": string;
-    "powers": Array<String>;
+  "name": string;
+  "description": string;
+  "powers": Array<String>;
 }

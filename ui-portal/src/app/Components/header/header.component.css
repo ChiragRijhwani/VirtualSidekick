@@ -2,23 +2,22 @@
   padding: 1px 5px;
 }
 .list-group-item {
-  border-radius: .25rem!important;
+  border-radius: 0.25rem !important;
 }
 @media (min-width: 768px) {
   .sidebar {
     height: 100%;
     width: 240px;
     position: fixed;
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     background-color: #fff;
     top: 52px;
     left: 0;
     overflow: hidden;
-    transition: width .35s ease;
+    transition: width 0.35s ease;
   }
   .sidebar.collapsing {
     width: 0;
-    transition: width .35s ease;
+    transition: width 0.35s ease;
   }
 } /* media query 768 ends */
-  

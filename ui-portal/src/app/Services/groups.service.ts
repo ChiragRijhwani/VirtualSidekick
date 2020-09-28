@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Group } from '../Components/groups/group.model';
 
 @Injectable({
@@ -26,7 +27,7 @@ export class GroupsService {
 
   constructor() { }
 
-  getGroups(): Group[] {
-    return this.groups;
+  getGroups(): Observable<Group[]> {
+    return of(this.groups);
   }
 }
