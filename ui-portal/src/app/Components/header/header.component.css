@@ -4,6 +4,10 @@
 .list-group-item {
   border-radius: 0.25rem !important;
 }
+.header-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
 @media (min-width: 768px) {
   .sidebar {
     height: 100%;

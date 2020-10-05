@@ -9,6 +9,7 @@ main {
 }
 .list-text {
   width: 80%;
+  font-size: 1.2rem;
 }
 .list-container > div > a > .list-text {
   cursor: pointer;
