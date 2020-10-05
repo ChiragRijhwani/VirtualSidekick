@@ -10,7 +10,7 @@ main {
 .list-text {
   width: 80%;
 }
-.list-container>div>a {
+.list-container > div > a > .list-text {
   cursor: pointer;
 }
 #addNew {

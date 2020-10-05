@@ -35,4 +35,24 @@ export class GroupsService {
     this.groups.push(group);
     return of("group added");
   }
+
+  updateGroups(group: Group): Observable<string> {
+    this.groups.forEach((group, i) => {
+      if (group === group) {
+        this.groups[i] = group;
+      }
+    })
+
+    return of("group updated");
+  }
+
+  deleteGroup(deletedGroup: Group): Observable<string> {
+    this.groups.forEach((group, i) => {
+      if (group === deletedGroup) {
+        this.groups.splice(i, 1);
+      }
+    })
+
+    return of("group deleted");
+  }
 }

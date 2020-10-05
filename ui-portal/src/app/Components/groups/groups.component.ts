@@ -37,4 +37,8 @@ export class GroupsComponent implements OnInit {
     this.groupService.addGroups(group).subscribe(success => console.log(success));
     this.formVisible = false;
   }
+
+  onDelete(group: Group) {
+    this.groupService.deleteGroup(group).subscribe(res => console.log(res));
+  }
 }
