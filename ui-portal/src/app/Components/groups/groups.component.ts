@@ -28,14 +28,7 @@ export class GroupsComponent implements OnInit {
   }
 
   onAddBtnClick() {
-    this.formVisible = true;
     this.selectedGroup = null;
-  }
-
-  onNewGroup(group: Group) {
-
-    this.groupService.addGroups(group).subscribe(success => console.log(success));
-    this.formVisible = false;
   }
 
   onDelete(group: Group) {

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { GroupsService } from 'src/app/Services/groups.service';
 import { Group } from '../groups/group.model';
 
 @Component({
@@ -12,14 +13,11 @@ export class AddGroupComponent implements OnInit {
   description: string;
   power: string[];
 
-  @Output() newGroup = new EventEmitter<Group>();
-  @Output() cancel = new EventEmitter();
-
   @Input() formVisible = false;
 
   powers: string[] = ["Read", "Write", "Delete", "Approve", "Admin"];
 
-  constructor() { }
+  constructor(private groupService: GroupsService) { }
 
   ngOnInit(): void {
   }
@@ -30,10 +28,6 @@ export class AddGroupComponent implements OnInit {
     group.description = this.description;
     group.powers = this.power;
 
-    this.newGroup.emit(group);
-  }
-
-  onCancel() {
-    this.cancel.emit();
+    this.groupService.addGroups(group);
   }
 }
