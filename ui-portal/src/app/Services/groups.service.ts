@@ -9,19 +9,22 @@ export class GroupsService {
 
   groups: Group[] = [
     {
-      "name": "Writers",
-      "description": "The content writers",
-      "powers": ["Read", "Write"]
+      id: 1,
+      name: "Writers",
+      description: "The content writers",
+      powers: ["Read", "Write"]
     },
     {
-      "name": "Readers",
-      "description": "The content readers",
-      "powers": ["Read"]
+      id: 2,
+      name: "Readers",
+      description: "The content readers",
+      powers: ["Read"]
     },
     {
-      "name": "Publishers",
-      "description": "I approve your content",
-      "powers": ["Read", "Write", "Delete", "Approve"]
+      id: 3,
+      name: "Publishers",
+      description: "I approve your content",
+      powers: ["Read", "Write", "Delete", "Approve"]
     }
   ]
 
@@ -29,6 +32,10 @@ export class GroupsService {
 
   getGroups(): Observable<Group[]> {
     return of(this.groups);
+  }
+
+  getGroup(id: number): Observable<Group> {
+    return of(this.groups.find(x => x.id === id));
   }
 
   addGroups(group: Group): Observable<string> {
