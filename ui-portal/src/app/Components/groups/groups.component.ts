@@ -8,8 +8,6 @@ import { Group } from './group.model';
   styleUrls: ['./groups.component.css'],
 })
 export class GroupsComponent implements OnInit {
-  selectedGroup: Group;
-  formVisible = false;
 
   groups: Group[];
 
@@ -21,14 +19,6 @@ export class GroupsComponent implements OnInit {
 
   getGroups() {
     this.groupService.getGroups().subscribe((groups) => (this.groups = groups));
-  }
-
-  setSelected(group: Group) {
-    this.selectedGroup = group;
-  }
-
-  onAddBtnClick() {
-    this.selectedGroup = null;
   }
 
   onDelete(group: Group) {
