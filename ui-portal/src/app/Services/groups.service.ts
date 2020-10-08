@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { Group } from '../Components/groups/group.model';
+import { Group } from '../Model/group.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class GroupsService {
     }
   ]
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   getGroups(): Observable<Group[]> {
     return of(this.groups);
@@ -61,5 +62,9 @@ export class GroupsService {
     })
 
     return of("group deleted");
+  }
+
+  isGroup(): boolean {
+    return this.router.url.includes("group");
   }
 }

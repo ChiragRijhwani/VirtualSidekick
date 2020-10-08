@@ -1,23 +1,31 @@
 <div class="form">
   <form ngForm #groupsForm class="jumbotron shadow">
     <div class="form-group">
-      <label for="groupName">Group Name</label>
-      <input type="text" class="form-control" id="groupName" maxlength="20" [(ngModel)]="name" name="groupName">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" maxlength="20" [(ngModel)]="name" name="name">
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="forGroup">
       <label for="description">Description</label>
       <input type="text" class="form-control" id="description" name="description" [(ngModel)]="description">
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="!forGroup">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email">
+    </div>
+    <div class="form-group" *ngIf="forGroup">
       <label for="powers">Powers</label>
       <select multiple class="form-control" id="powers" name="powers" [(ngModel)]="power">
         <option *ngFor="let pow of powers" value="{{pow}}" selected>{{pow}}</option>
       </select>
     </div>
+    <div class="custom-control custom-switch" *ngIf="!forGroup">
+      <input type="checkbox" class="custom-control-input" id="userLocked" [(ngModel)]="lockSwitch" name="userLocked"
+        (change)="onLockSwitchClick()">
+      <label class="custom-control-label" for="userLocked">{{lockSwitchLabel}}</label>
+    </div>
     <div class="d-flex justify-content-center">
-      <button type="button" class="btn btn-outline-secondary w-25" routerLink="/home">Cancel</button>
-      <button type="button" class="btn btn-primary ml-1 w-25" (click)="onSubmit(); groupsForm.reset()"
-        routerLink="/home">Save</button>
+      <button type="button" class="btn btn-outline-secondary w-25" (click)="onCancel()">Cancel</button>
+      <button type="button" class="btn btn-primary ml-1 w-25" (click)="onSubmit(); groupsForm.reset()">Save</button>
     </div>
   </form>
 </div>

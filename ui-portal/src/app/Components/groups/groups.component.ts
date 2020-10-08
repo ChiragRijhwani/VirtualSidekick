@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GroupsService } from 'src/app/Services/groups.service';
-import { Group } from './group.model';
+import { UsersService } from 'src/app/Services/users.service';
+import { Group } from '../../Model/group.model';
 
 @Component({
   selector: 'app-groups',
@@ -9,19 +11,52 @@ import { Group } from './group.model';
 })
 export class GroupsComponent implements OnInit {
 
-  groups: Group[];
+  data: any[];
+  heading: string;
 
-  constructor(private groupService: GroupsService) { }
+  constructor(private groupService: GroupsService,
+    private userService: UsersService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.getGroups();
+    if (this.groupService.isGroup()) {
+      this.heading = "Groups";
+      this.getGroups();
+    } else {
+      this.heading = "Users";
+      this.getUsers();
+    }
   }
 
   getGroups() {
-    this.groupService.getGroups().subscribe((groups) => (this.groups = groups));
+    this.groupService.getGroups().subscribe((groups) => (this.data = groups));
   }
 
-  onDelete(group: Group) {
-    this.groupService.deleteGroup(group).subscribe(res => console.log(res));
+  getUsers() {
+    this.userService.getUsers().subscribe((users) => (this.data = users));
+  }
+
+  onAddBtnClick() {
+    if (this.groupService.isGroup()) {
+      this.router.navigate(["/groups/add"]);
+    } else {
+      this.router.navigate(["/users/add"]);
+    }
+  }
+
+  onGetDetail(id: number) {
+    if (this.groupService.isGroup()) {
+      this.router.navigate(["/groups/" + id]);
+    } else {
+      this.router.navigate(["/users/" + id]);
+    }
+  }
+
+  onDelete(item: any) {
+    if (this.groupService.isGroup()) {
+      this.groupService.deleteGroup(item).subscribe(res => console.log(res));
+    } else {
+      this.groupService.deleteGroup(item).subscribe(res => console.log(res));
+    }
   }
 }

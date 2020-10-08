@@ -1,6 +1,6 @@
 <main role="main" class="container">
   <div class="h-100 d-flex flex-column">
-    <h1 class="display-4 text-primary text-center d-inline">Groups</h1>
+    <h1 class="display-4 text-primary text-center d-inline">{{heading}}</h1>
 
     <form class="search-form mt-2 px-3 form-group">
       <div class="input-group">
@@ -13,10 +13,10 @@
 
     <section class="list-container">
       <div class="list-group list-group-flush">
-        <a class="list-group-item list-group-item-action" *ngFor="let group of groups">
-          <span routerLink="/group/{{group.id}}" class="list-text d-inline-block pt-2">{{group.name}}</span>
+        <a class="list-group-item list-group-item-action" *ngFor="let item of data">
+          <span (click)="onGetDetail(item.id)" class="list-text d-inline-block pt-2">{{item.name}}</span>
           <div class="float-right">
-            <button type="button" class="btn btn-outline-danger btn-circle btn-sm ml-1" (click)="onDelete(group)">
+            <button type="button" class="btn btn-outline-danger btn-circle btn-sm ml-1" (click)="onDelete(item)">
               <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -28,7 +28,7 @@
           </div>
         </a>
       </div>
-      <button class="btn btn-outline-primary btn-circle shadow" id="addNew" routerLink="/group/add">
+      <button class="btn btn-outline-primary btn-circle shadow" id="addNew" (click)="onAddBtnClick()">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor"
           xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd"

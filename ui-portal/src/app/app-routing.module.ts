@@ -12,17 +12,32 @@ const routes: Routes = [
     component: GroupsComponent
   },
   {
-    path: 'home',
+    path: 'users/home',
     canActivate: [AuthGuard],
     component: GroupsComponent
   },
   {
-    path: 'group/add',
+    path: 'groups/home',
+    canActivate: [AuthGuard],
+    component: GroupsComponent
+  },
+  {
+    path: 'users/add',
     canActivate: [AuthGuard],
     component: AddGroupComponent
   },
   {
-    path: 'group/:id',
+    path: 'users/:id',
+    canActivate: [AuthGuard],
+    component: AddGroupComponent
+  },
+  {
+    path: 'groups/add',
+    canActivate: [AuthGuard],
+    component: AddGroupComponent
+  },
+  {
+    path: 'groups/:id',
     canActivate: [AuthGuard],
     component: AddGroupComponent
   },
