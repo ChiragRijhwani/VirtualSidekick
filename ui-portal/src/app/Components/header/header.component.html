@@ -14,8 +14,9 @@
     <button class="btn btn-sm btn-danger pull-right" type="submit" (click)="logout()">Log out</button>
     <div class="sidebar collapse navbar-collapse rounded" id="navbarSupportedContent">
       <div class="mt-2 list-group list-group-flush text-nowrap">
-        <a href="" class="list-group-item list-group-item-action active" data-toggle="list">Manage Groups</a>
-        <a href="" class="list-group-item list-group-item-action" data-toggle="list">Manage Users</a>
+        <a routerLink="/home" routerLinkActive="active" class="list-group-item list-group-item-action"
+          data-toggle="list">Manage Groups</a>
+        <a routerLinkActive="active" class="list-group-item list-group-item-action" data-toggle="list">Manage Users</a>
       </div>
     </div>
   </nav>
