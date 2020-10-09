@@ -19,7 +19,7 @@ export class AddGroupComponent implements OnInit {
   power: string[];
   forGroup: boolean;
   lockSwitch: boolean;
-  lockSwitchLabel: string;
+  lockSwitchLabel: string = "Unlocked";
   email: string;
 
   powers: string[] = ["Read", "Write", "Delete", "Approve", "Admin"];
