@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
 @Data
-@Document(collation = "group")
+@Document(collection = "group")
 public class Group {
 	
 	@Id
