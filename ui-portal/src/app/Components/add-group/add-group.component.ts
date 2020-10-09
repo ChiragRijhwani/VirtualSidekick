@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { getgroups } from 'process';
+import { User } from 'src/app/Model/user.model';
 import { CommonService } from 'src/app/Services/common.service';
 import { GroupsService } from 'src/app/Services/groups.service';
 import { UsersService } from 'src/app/Services/users.service';
@@ -69,19 +70,36 @@ export class AddGroupComponent implements OnInit {
 
   onSubmit() {
     const id = +this.route.snapshot.params.id;
-    var group = new Group();
-    if (!id) {
-      this.groupService.getGroups().subscribe(groups => group.id = groups.length + 1);
-      group.name = this.name;
-      group.description = this.description;
-      group.powers = this.power;
-      this.groupService.addGroups(group);
+    if (this.groupService.isGroup()) {
+      var group = new Group();
+      if (!id) {
+        this.groupService.getGroups().subscribe(groups => group.id = groups.length + 1);
+        group.name = this.name;
+        group.description = this.description;
+        group.powers = this.power;
+        this.groupService.addGroups(group);
+      } else {
+        group = this.data;
+        group.name = this.name;
+        group.description = this.description;
+        group.powers = this.power;
+        this.groupService.updateGroups(group);
+      }
     } else {
-      group = this.data;
-      group.name = this.name;
-      group.description = this.description;
-      group.powers = this.power;
-      this.groupService.updateGroups(group);
+      var user = new User();
+      if (!id) {
+        this.userService.getUsers().subscribe(users => user.id = users.length + 1);
+        user.name = this.name;
+        user.email = this.email;
+        user.isLocked = this.lockSwitch;
+        this.userService.addUsers(user);
+      } else {
+        user = this.data;
+        user.name = this.name;
+        user.email = this.email;
+        user.isLocked = this.lockSwitch;
+        this.userService.updateUsers(user);
+      }
     }
 
     this.commonService.goHome();
