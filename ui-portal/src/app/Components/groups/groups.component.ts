@@ -44,7 +44,7 @@ export class GroupsComponent implements OnInit {
     }
   }
 
-  onGetDetail(id: number) {
+  onGetDetail(id: string) {
     if (this.groupService.isGroup()) {
       this.router.navigate(["/groups/" + id]);
     } else {
@@ -54,7 +54,7 @@ export class GroupsComponent implements OnInit {
 
   onDelete(item: any) {
     if (this.groupService.isGroup()) {
-      this.groupService.deleteGroup(item).subscribe(res => console.log(res));
+      this.groupService.deleteGroup(item).subscribe(res => this.getGroups());
     } else {
       this.groupService.deleteGroup(item).subscribe(res => console.log(res));
     }

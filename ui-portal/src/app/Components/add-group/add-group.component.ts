@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { getgroups } from 'process';
 import { User } from 'src/app/Model/user.model';
 import { CommonService } from 'src/app/Services/common.service';
 import { GroupsService } from 'src/app/Services/groups.service';
@@ -25,6 +24,7 @@ export class AddGroupComponent implements OnInit {
   powers: string[] = ["Read", "Write", "Delete", "Approve", "Admin"];
 
   data: any;
+  group: Group;
 
   constructor(private groupService: GroupsService,
     private userService: UsersService,
@@ -42,13 +42,15 @@ export class AddGroupComponent implements OnInit {
   }
 
   getGroup() {
-    const id = +this.route.snapshot.params.id;
+    const id = this.route.snapshot.params.id;
 
     if (id) {
-      this.groupService.getGroup(id).subscribe(group => this.data = group);
-      this.name = this.data.name;
-      this.description = this.data.description;
-      this.power = this.data.powers;
+      this.groupService.getGroup(id).subscribe(group => {
+        this.data = group;
+        this.name = group.name;
+        this.description = group.description;
+        this.power = group.powers;
+      });
     }
   }
 
@@ -69,22 +71,16 @@ export class AddGroupComponent implements OnInit {
   }
 
   onSubmit() {
-    const id = +this.route.snapshot.params.id;
+    const id = this.route.snapshot.params.id;
     if (this.groupService.isGroup()) {
       var group = new Group();
-      if (!id) {
-        this.groupService.getGroups().subscribe(groups => group.id = groups.length + 1);
-        group.name = this.name;
-        group.description = this.description;
-        group.powers = this.power;
-        this.groupService.addGroups(group);
-      } else {
+      if (id) {
         group = this.data;
-        group.name = this.name;
-        group.description = this.description;
-        group.powers = this.power;
-        this.groupService.updateGroups(group);
       }
+      group.name = this.name;
+      group.description = this.description;
+      group.powers = this.power;
+      this.groupService.addGroups(group).subscribe(res => this.commonService.goHome());
     } else {
       var user = new User();
       if (!id) {
@@ -102,7 +98,7 @@ export class AddGroupComponent implements OnInit {
       }
     }
 
-    this.commonService.goHome();
+    //this.commonService.goHome();
   }
 
   onLockSwitchClick() {
