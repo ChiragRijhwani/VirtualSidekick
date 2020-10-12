@@ -7,13 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.training.fullstack.virtualsidekick.controller.service.GroupService;
 import com.training.fullstack.virtualsidekick.entity.Group;
+import com.training.fullstack.virtualsidekick.entity.PowersMaster;
 import com.training.fullstack.virtualsidekick.repository.GroupDao;
+import com.training.fullstack.virtualsidekick.repository.PowersMasterDao;
 
 @Service
 public class GroupServiceImpl implements GroupService {
 
 	@Autowired
 	private GroupDao dao;
+
+	@Autowired
+	private PowersMasterDao powerDao;
 
 	@Override
 	public List<Group> getAllGroups() {
@@ -35,5 +40,10 @@ public class GroupServiceImpl implements GroupService {
 		Group group = getGroup(id);
 		dao.delete(group);
 		return group;
+	}
+
+	@Override
+	public List<PowersMaster> getAllPowers() {
+		return powerDao.findAll();
 	}
 }

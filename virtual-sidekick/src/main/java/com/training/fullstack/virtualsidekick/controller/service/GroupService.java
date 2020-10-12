@@ -3,6 +3,7 @@ package com.training.fullstack.virtualsidekick.controller.service;
 import java.util.List;
 
 import com.training.fullstack.virtualsidekick.entity.Group;
+import com.training.fullstack.virtualsidekick.entity.PowersMaster;
 
 public interface GroupService {
 
@@ -13,4 +14,6 @@ public interface GroupService {
 	Group saveGroup(Group group);
 
 	Group deleteGroup(String id);
+
+	List<PowersMaster> getAllPowers();
 }

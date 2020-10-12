@@ -6,11 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
 @Data
-@Document(collection = "user")
-public class User {
+@Document(collection = "powers")
+public class PowersMaster {
+
 	@Id
 	private String id;
-	private String name;
-	private String email;
-	private boolean locked;
+	private String power;
 }

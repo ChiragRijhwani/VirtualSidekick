@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.training.fullstack.virtualsidekick.controller.service.GroupService;
 import com.training.fullstack.virtualsidekick.entity.Group;
+import com.training.fullstack.virtualsidekick.entity.PowersMaster;
 
 @RestController
 @RequestMapping("/api")
@@ -41,5 +42,10 @@ public class GroupController {
 	@DeleteMapping("group/{id}")
 	public Group deleteGroup(@PathVariable String id) {
 		return service.deleteGroup(id);
+	}
+
+	@GetMapping("/group/powers")
+	public List<PowersMaster> getAllPowers() {
+		return service.getAllPowers();
 	}
 }
