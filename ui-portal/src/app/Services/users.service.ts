@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { User } from '../Model/user.model';
@@ -7,53 +8,23 @@ import { User } from '../Model/user.model';
 })
 export class UsersService {
 
-  users: User[] = [
-    {
-      id: 1,
-      name: "Narendra Modi",
-      email: "narendra.modi@pmoindia.com",
-      isLocked: false
-    },
-    {
-      id: 2,
-      name: "Rahul Gandhi",
-      email: "rahul.gandhi@dream11.com",
-      isLocked: true
-    }
-  ]
+  baseUrl = "http://localhost:8080/api/";
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return of(this.users);
+    return this.http.get<User[]>(this.baseUrl + "users");
   }
 
-  getUser(id: number): Observable<User> {
-    return of(this.users.find(x => x.id === id));
+  getUser(id: string): Observable<User> {
+    return this.http.get<User>(this.baseUrl + "user/" + id);
   }
 
-  addUsers(user: User): Observable<string> {
-    this.users.push(user);
-    return of("group added");
+  addUser(user: User): Observable<any> {
+    return this.http.post<User>(this.baseUrl + "user/add", user);
   }
 
-  updateUsers(user: User): Observable<string> {
-    this.users.forEach((user, i) => {
-      if (user === user) {
-        this.users[i] = user;
-      }
-    })
-
-    return of("group updated");
-  }
-
-  deleteUser(deletedUser: User): Observable<string> {
-    this.users.forEach((user, i) => {
-      if (user === deletedUser) {
-        this.users.splice(i, 1);
-      }
-    })
-
-    return of("group deleted");
+  deleteUser(deletedUser: User): Observable<any> {
+    return this.http.delete<User>(this.baseUrl + "user/" + deletedUser.id);
   }
 }

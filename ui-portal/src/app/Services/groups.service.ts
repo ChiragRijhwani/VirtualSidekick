@@ -3,32 +3,12 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Group } from '../Model/group.model';
 import { HttpClient } from '@angular/common/http';
+import { Powers } from '../Model/powers.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GroupsService {
-
-  // groups: Group[] = [
-  //   {
-  //     id: "1",
-  //     name: "Writers",
-  //     description: "The content writers",
-  //     powers: ["Read", "Write"]
-  //   },
-  //   {
-  //     id: "2",
-  //     name: "Readers",
-  //     description: "The content readers",
-  //     powers: ["Read"]
-  //   },
-  //   {
-  //     id: "3",
-  //     name: "Publishers",
-  //     description: "I approve your content",
-  //     powers: ["Read", "Write", "Delete", "Approve"]
-  //   }
-  // ];
 
   baseUrl = "http://localhost:8080/api/";
 
@@ -43,7 +23,7 @@ export class GroupsService {
     return this.http.get<Group>(this.baseUrl + "group/" + id);
   }
 
-  addGroups(group: Group): Observable<any> {
+  addGroup(group: Group): Observable<any> {
     return this.http.post<Group>(this.baseUrl + "group/add", group);
   }
 
@@ -53,5 +33,9 @@ export class GroupsService {
 
   isGroup(): boolean {
     return this.router.url.includes("group");
+  }
+
+  getPowers(): Observable<Powers[]> {
+    return this.http.get<Powers[]>(this.baseUrl + "group/powers");
   }
 }

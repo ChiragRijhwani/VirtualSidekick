@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Powers } from 'src/app/Model/powers.model';
 import { User } from 'src/app/Model/user.model';
 import { CommonService } from 'src/app/Services/common.service';
 import { GroupsService } from 'src/app/Services/groups.service';
@@ -21,10 +22,8 @@ export class AddGroupComponent implements OnInit {
   lockSwitchLabel: string = "Unlocked";
   email: string;
 
-  powers: string[] = ["Read", "Write", "Delete", "Approve", "Admin"];
-
+  powers = new Array();
   data: any;
-  group: Group;
 
   constructor(private groupService: GroupsService,
     private userService: UsersService,
@@ -35,6 +34,7 @@ export class AddGroupComponent implements OnInit {
     if (this.groupService.isGroup()) {
       this.forGroup = true;
       this.getGroup();
+      this.groupService.getPowers().subscribe(powers => powers.forEach(power => this.powers.push(power.power)));
     } else {
       this.forGroup = false;
       this.getUser();
@@ -55,14 +55,16 @@ export class AddGroupComponent implements OnInit {
   }
 
   getUser() {
-    const id = +this.route.snapshot.params.id;
+    const id = this.route.snapshot.params.id;
 
     if (id) {
-      this.userService.getUser(id).subscribe(user => this.data = user);
-      this.name = this.data.name;
-      this.email = this.data.email;
-      this.lockSwitch = this.data.isLocked;
-      this.onLockSwitchClick();
+      this.userService.getUser(id).subscribe(user => {
+        this.data = user;
+        this.name = user.name;
+        this.email = user.email;
+        this.lockSwitch = user.locked;
+        this.onLockSwitchClick();
+      });
     }
   }
 
@@ -72,6 +74,7 @@ export class AddGroupComponent implements OnInit {
 
   onSubmit() {
     const id = this.route.snapshot.params.id;
+
     if (this.groupService.isGroup()) {
       var group = new Group();
       if (id) {
@@ -80,25 +83,17 @@ export class AddGroupComponent implements OnInit {
       group.name = this.name;
       group.description = this.description;
       group.powers = this.power;
-      this.groupService.addGroups(group).subscribe(res => this.commonService.goHome());
+      this.groupService.addGroup(group).subscribe(res => this.commonService.goHome());
     } else {
       var user = new User();
-      if (!id) {
-        this.userService.getUsers().subscribe(users => user.id = users.length + 1);
-        user.name = this.name;
-        user.email = this.email;
-        user.isLocked = this.lockSwitch;
-        this.userService.addUsers(user);
-      } else {
+      if (id) {
         user = this.data;
-        user.name = this.name;
-        user.email = this.email;
-        user.isLocked = this.lockSwitch;
-        this.userService.updateUsers(user);
       }
+      user.name = this.name;
+      user.email = this.email;
+      user.locked = this.lockSwitch;
+      this.userService.addUser(user).subscribe(res => this.commonService.goHome());
     }
-
-    //this.commonService.goHome();
   }
 
   onLockSwitchClick() {

@@ -56,7 +56,7 @@ export class GroupsComponent implements OnInit {
     if (this.groupService.isGroup()) {
       this.groupService.deleteGroup(item).subscribe(res => this.getGroups());
     } else {
-      this.groupService.deleteGroup(item).subscribe(res => console.log(res));
+      this.userService.deleteUser(item).subscribe(res => this.getUsers());
     }
   }
 }
