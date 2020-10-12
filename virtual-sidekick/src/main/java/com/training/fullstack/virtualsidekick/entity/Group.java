@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 @Document(collection = "group")
 public class Group {
-	
+
 	@Id
 	private String id;
 	private String name;

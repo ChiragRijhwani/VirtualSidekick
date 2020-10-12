@@ -11,7 +11,7 @@ import com.training.fullstack.virtualsidekick.repository.GroupDao;
 
 @Service
 public class GroupServiceImpl implements GroupService {
-	
+
 	@Autowired
 	private GroupDao dao;
 
@@ -22,7 +22,7 @@ public class GroupServiceImpl implements GroupService {
 
 	@Override
 	public Group getGroup(String id) {
-		return dao.findById(id).orElseThrow(()-> new RuntimeException("No Group found with requested id"));
+		return dao.findById(id).orElseThrow(() -> new RuntimeException("No Group found with requested id"));
 	}
 
 	@Override

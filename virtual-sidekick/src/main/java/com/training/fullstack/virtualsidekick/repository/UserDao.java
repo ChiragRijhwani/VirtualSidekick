@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.training.fullstack.virtualsidekick.entity.User;
 
 @Repository
-public interface UserDao extends MongoRepository<User, String>{
+public interface UserDao extends MongoRepository<User, String> {
 
 }

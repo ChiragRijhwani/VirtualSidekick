@@ -12,34 +12,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.training.fullstack.virtualsidekick.controller.service.GroupService;
-import com.training.fullstack.virtualsidekick.entity.Group;
+import com.training.fullstack.virtualsidekick.controller.service.UserService;
+import com.training.fullstack.virtualsidekick.entity.User;
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin("*")
-public class GroupController {
+public class UserController {
 
 	@Autowired
-	private GroupService service;
+	private UserService service;
 
-	@GetMapping("groups")
-	public List<Group> getAllGroups() {
-		return service.getAllGroups();
+	@GetMapping("users")
+	public List<User> getAllUsers() {
+		return service.getAllUsers();
 	}
 
-	@GetMapping("group/{id}")
-	public Group getGroup(@PathVariable String id) {
-		return service.getGroup(id);
+	@GetMapping("user/{id}")
+	public User getUser(@PathVariable String id) {
+		return service.getUser(id);
 	}
 
-	@PostMapping("group/add")
-	public Group saveGroup(@RequestBody Group group) {
-		return service.saveGroup(group);
+	@PostMapping("user/add")
+	public User saveUser(@RequestBody User user) {
+		return service.saveUser(user);
 	}
 
-	@DeleteMapping("group/{id}")
-	public Group deleteGroup(@PathVariable String id) {
-		return service.deleteGroup(id);
+	@DeleteMapping("user/{id}")
+	public User deleteUser(@PathVariable String id) {
+		return service.deleteUser(id);
 	}
 }
